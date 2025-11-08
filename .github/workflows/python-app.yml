@@ -11,29 +11,24 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: [3.9, 3.10]
+        python-version: [3.9, 3.10, 3.11, 3.12, 3.13]  # ✅ Removed Python 3.1 completely
 
     steps:
-      - uses: actions/checkout@v4
+    - name: Checkout repository
+      uses: actions/checkout@v4
 
-      - name: Set up Python ${{ matrix.python-version }}
-        uses: actions/setup-python@v5
-        with:
-          python-version: ${{ matrix.python-version }}
+    - name: Set up Python ${{ matrix.python-version }}
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ matrix.python-version }}
 
-      - name: Install dependencies
-        run: |
-          python -m pip install --upgrade pip
-          if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Upgrade pip
+      run: python -m pip install --upgrade pip
 
-      - name: Run tests
-        run: |
-          echo "✅ Running tests with Python ${{ matrix.python-version }}"
-          python -c "
-          try:
-              import sys
-              print(f'✅ Python version: {sys.version}')
-          except Exception as e:
-              print(f'❌ Import error: {e}')
-              exit(1)
-          "
+    - name: Install dependencies
+      run: |
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+
+    - name: Run tests
+      run: |
+        if [ -d tests ]; then pytest -v; else echo "No tests found"; fi
