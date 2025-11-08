@@ -8,10 +8,9 @@ on:
 
 jobs:
   test:
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     strategy:
       matrix:
-        os: [ubuntu-latest]
         python-version: [3.9, 3.10]
 
     steps:
@@ -29,13 +28,11 @@ jobs:
 
       - name: Run tests
         run: |
-          echo "✅ Python version:"
-          python --version
-          echo "✅ Running import checks..."
+          echo "✅ Running tests with Python ${{ matrix.python-version }}"
           python -c "
           try:
               import sys
-              print('✅ Python environment ready')
+              print(f'✅ Python version: {sys.version}')
           except Exception as e:
               print(f'❌ Import error: {e}')
               exit(1)
