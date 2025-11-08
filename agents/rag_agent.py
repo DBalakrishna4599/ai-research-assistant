@@ -5,6 +5,7 @@ from typing import List, Dict, Any
 import os
 import hashlib
 
+
 class RAGAgent:
     def __init__(self, persist_directory: str = "./chroma_db"):
         self.model = SentenceTransformer('all-MiniLM-L6-v2')
