@@ -1,34 +1,27 @@
-# Python
+# Byte-compiled / optimized / DLL files
 __pycache__/
 *.pyc
 *.pyo
 *.pyd
-.Python
-env/
+
+# Virtual Environments
 venv/
-research_env/
+.venv/
+env/
 
 # Database files
 *.db
 *.sqlite3
-chroma_db/
 
-# Environment files
+# IDE and editor files
+.idea/
+.vscode/
+
+# Local secrets and environment variables
 .env
 
-# IDE files
-.vscode/
-.idea/
-*.swp
-*.swo
-
-# OS files
+# OS-specific files
 .DS_Store
-Thumbs.db
 
-# Logs
-*.log
-
-# Temporary files
-temp/
-tmp/
+# ChromaDB persistence directory
+chroma_db/
