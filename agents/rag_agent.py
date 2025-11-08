@@ -1,4 +1,4 @@
-import chromadb
+import chromadb 
 from chromadb.config import Settings
 from sentence_transformers import SentenceTransformer
 from typing import List, Dict, Any
@@ -8,7 +8,7 @@ import hashlib
 
 class RAGAgent:
     def __init__(self, persist_directory: str = "./chroma_db"):
-        self.model = SentenceTransformer('all-MiniLM-L6-v2')
+        self.model = SentenceTransformer('all-MiniLM-L6-v2',device='cpu')
         self.chroma_client = chromadb.PersistentClient(path=persist_directory)
         self.collection = self.chroma_client.get_or_create_collection(
             name="research_papers",
