@@ -9,7 +9,7 @@ https://researchmindai-by-balakrishnachowdary-2300089049-klu.streamlit.app/
 
 # if any problem live Demo with Database for Search & Analyse Model to Extract Anaylze Topics:
 
-Please follow clone steps to Local Setup & Installation and In main Branch you can see rest_database.py import the file to local run the file to rest database make sure your .env file with GOOGLE_API_KEY=your_api_key_from_aistudio
+Please follow clone steps to Local Setup & Installation and run the rest_database.py file to rest database, make sure your .env file with GOOGLE_API_KEY=your_api_key_from_aistudio, run the streamlit run app.py file..  
 
 
 # ✨ Key Features
