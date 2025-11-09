@@ -7,6 +7,9 @@ This project helps researchers, students, and academics overcome the overwhelmin
 # 🚀 Live Demo:
 https://researchmindai-by-balakrishnachowdary-2300089049-klu.streamlit.app/
 
+# if any problem live Demo with Database for Search & Analyse Model to Extract Anaylze Topics Please follow clone steps to Local Setup & Installation and In main Branch you can see rest_database.py import the file to local run the file to rest database make sure your .env file with GOOGLE_API_KEY=your_api_key_from_aistudio
+
+
 # ✨ Key Features
 
 PDF Parsing: Extract full text, metadata (title, authors, journal), and citations from PDFs using PyMuPDF.
