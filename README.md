@@ -1,162 +1,136 @@
-# 🤖 AI Research Assistant for Papers & PDFs
+An intelligent agent that ingests a library of academic PDF papers, finds the most relevant documents based on a user's query, and provides AI-powered summaries, comparative analysis, and key research metrics.
 
-An intelligent research assistant that helps academics analyze, search, and compare research papers using AI-powered semantic search and topic extraction.
+This project is designed to help researchers, students, and academics overcome the overwhelming volume of published literature by automating the process of reading, synthesizing, and comparing findings.
 
-## 🚀 Features
+🚀 Live Demo
+You can access and use the live application here:
+https://researchmindai-by-balakrishnachowdary-2300089049-klu.streamlit.app/
 
-- **PDF Parsing**: Extract text and metadata from research papers
-- **Semantic Search**: Find relevant papers using RAG (Retrieval-Augmented Generation)
-- **AI-Powered Analysis**: Extract key topics using Google Gemini AI
-- **Comparative Analysis**: Compare multiple papers side-by-side
-- **Impact Metrics**: Calculate h-index, i10-index, and journal rankings
-- **Interactive UI**: Streamlit-based web interface
+✨ Key Features
+PDF Parsing: Extracts full text, metadata (title, authors, journal), and citations from PDF files using PyMuPDF.
 
-## 🛠️ Installation
+Semantic Search (RAG): Implements Retrieval-Augmented Generation using sentence-transformers for embeddings and ChromaDB for efficient vector storage and retrieval.
 
-1. **Clone the repository**:
-   ```bash
-   git clone https://github.com/DBalakrishna4599/research-assistant.git
-   cd research-assistant
+Intelligent Ranking: Enhances search relevance by considering title matches, citation counts, and publication year.
 
-# Create requirements.txt (if not exists)
-cat > requirements.txt << 'EOF'
-streamlit==1.28.0
-chromadb==0.4.15
-pymupdf==1.23.7
-python-dotenv==1.0.0
-google-generativeai==0.3.0
-numpy==1.24.0
-pandas==2.0.0
-scikit-learn==1.3.0
-sentence-transformers==2.2.2
-plotly==5.15.0
-requests==2.31.0
-tqdm==4.65.0
-nltk==3.8.1
-EOF
+AI-Powered Analysis: Leverages the Google Gemini API to perform deep analysis, including:
 
+Extraction of key topics (e.g., architectures, datasets, evaluation methods).
 
+Generation of comparative analysis across multiple papers.
 
-1. Create virtual environment:
+Calculation of research impact metrics (h-index, i10-index, journal tiers).
 
-   bash
-    python -m venv research_env
-      source research_env/bin/activate  # On Windows: research_env\Scripts\activate
+Interactive UI: A user-friendly web interface built with Streamlit that allows for easy paper uploading, searching, and analysis.
 
-2. Install dependencies:
+🛠️ Tech Stack
+Frontend: Streamlit
 
-    bash
-      pip install -r requirements.txt
+Backend: Python
 
-3. Set up environment variables:
+LLM: Google Gemini
 
-    bash
-    cp .env.example .env
-      # Add your Gemini API key to .env
+Vector Database: ChromaDB
 
-4. Run the application:
+Embeddings: sentence-transformers (all-MiniLM-L6-v2)
 
-    bash
-      streamlit run app.py
+PDF Parsing: PyMuPDF
 
+CI/CD: GitHub Actions, Streamlit Community Cloud
 
-research-assistant/
-├── app.py                 # Main Streamlit application
-├── requirements.txt       # Python dependencies
-├── .env.example          # Environment variables template
-├── README.md             # Project documentation
-├── agents/               # AI agent modules
-│   ├── pdf_parser.py    # PDF text extraction
-│   ├── rag_agent.py     # Semantic search
-│   └── summarizer.py    # AI topic extraction
-├── utils/               # Utility modules
-│   ├── database.py      # SQLite database operations
-│   └── helpers.py       # Helper functions
-└── data/               # Sample data and PDFs
-    └── sample_pdfs/
+📂 Project Structure
 
+ai-research-assistant/
+├── .github/
+│   └── workflows/
+│       └── ci.yml
+├── agents/
+│   ├── __init__.py
+│   ├── pdf_parser.py
+│   ├── rag_agent.py
+│   └── summarizer.py
+├── data/
+│   └── sample_pdfs/
+├── tests/
+│   └── test_app.py
+├── utils/
+│   ├── __init__.py
+│   └── database.py
+├── .env
+├── .gitignore
+├── app.py
+├── README.md
+└── requirements.txt
 
+⚙️ Local Setup and Installation
+Follow these steps to run the project on your local machine.
 
-🔧 Configuration
-1.  Get Gemini API Key:
+1. Clone the Repository
 
-       Visit Google AI Studio
-       Create an API key
-       Add it to your .env file:
+git clone https://github.com/DBalakrishna4599/ai-research-assistant.git
+cd ai-research-assistant
 
-       text
-          GOOGLE_API_KEY=your_gemini_api_key_here
+2. Create and Activate a Virtual Environment
 
-2. Add Research Papers:
+This keeps your project dependencies isolated.
 
-      Use the "Upload Papers" section in the app
-          Or place PDFs in data/sample_pdfs/
+# Create the environment
+python3 -m venv venv
+
+# Activate it (on macOS/Linux)
+source venv/bin/activate
+# On Windows, use: venv\Scripts\activate
 
 
+3. Install Dependencies
 
-🎯 Usage
+Install all required packages from the requirements.txt file.
 
-1. Upload Papers: Process PDF research papers
-2. Search & Analyze: Find relevant papers and extract key topics
-3. Comparative Analysis: Compare multiple papers
-4. Impact Metrics: View citation analysis and journal rankings
+pip install -r requirements.txt
 
+4. Set Up Environment Variables
 
+Your Gemini API key is needed to run the summarizer agent.
 
+Create a file named .env in the project root. A template (.env.example) is provided.
 
-🐛 Troubleshooting
+Add your API key to the new .env file:
+              GOOGLE_API_KEY="YOUR_API_KEY_HERE"
 
-   Common Issues
+5. Run the Streamlit Application
 
-      1. Gemini API Quota Exceeded:
+streamlit run app.py
+The application should now be running in your browser at http://localhost:8501.
 
-        Check your usage at Google AI Studio
-        Wait for daily reset or upgrade plan
-    
-      2. PDF Parsing Issues:
+📖 How to Use the App
+Upload Papers: Navigate to the "Upload Papers" section and upload one or more research PDFs.
 
-         Ensure PDFs are not password-protected
-         Check that PyMuPDF is properly installed
-         
-      3. Database Errors:
+Search & Analyze: Go to the "Search & Analyze" section. Enter a query to find the most relevant papers from your uploaded library.
 
-        Run python reset_database.py to clear and reset
+Get Insights: For any paper in the search results, click "Analyze Topics" to have the AI agent extract key information using the Gemini API.
 
-
-Getting Help: 
-
-      Check the console for error messages
-      Ensure all dependencies are installed
-      Verify your API key is valid
-
+Compare: Use the "Comparative Analysis" and "Impact Metrics" sections to get a high-level overview of your research collection.
 
 🤝 Contributing
+Contributions, issues, and feature requests are welcome! Feel free to check the issues page.
 
-    Fork the repository
-          Create a feature branch: git checkout -b feature/amazing-feature
-          Commit changes: git commit -m 'Add amazing feature'
-          Push to branch: git push origin feature/amazing-feature
-          Open a Pull Request
+Fork the Project
 
+Create your Feature Branch (git checkout -b feature/AmazingFeature)
 
-📝 License
+Commit your Changes (git commit -m 'Add some AmazingFeature')
 
-This project is licensed under the MIT License - see the LICENSE file for details.
+Push to the Branch (git push origin feature/AmazingFeature)
+
+Open a Pull Request
+
+📝 License: 
+Distributed under the MIT License. See LICENSE for more information.
 
 🙏 Acknowledgments
 
-Streamlit for the web framework
-Google Gemini AI for topic extraction
-ChromaDB for vector search
-Sentence Transformers for embeddings
+Streamlit
+Google Gemini
+ChromaDB
+Sentence Transformers
 
-### Create `.env.example`
-
-```bash
-# Google Gemini API Key
-# Get your API key from: https://aistudio.google.com/
-GOOGLE_API_KEY=your_gemini_api_key_here
-
-# Optional: Streamlit configuration
-STREAMLIT_SERVER_PORT=8501
-STREAMLIT_SERVER_ADDRESS=0.0.0.0
